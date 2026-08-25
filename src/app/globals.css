@@ -1,26 +1,119 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink: #2c2428;
+  --muted: #7a6a70;
+  --accent: #c45c72;
+  --surface: #fff8f6;
+  --wash: rgba(44, 36, 40, 0.05);
+  --wash-strong: rgba(44, 36, 40, 0.09);
+  --line: rgba(44, 36, 40, 0.08);
+  --background: #f3ebe6;
+  --foreground: #2c2428;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
 }
 
 body {
-  background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
+  background:
+    radial-gradient(ellipse 120% 80% at 10% -10%, #f7d5d0 0%, transparent 55%),
+    radial-gradient(ellipse 90% 70% at 100% 0%, #d7e8dc 0%, transparent 50%),
+    radial-gradient(ellipse 70% 50% at 50% 100%, #f0ddd4 0%, transparent 45%),
+    linear-gradient(165deg, #f7efe9 0%, #ebe4df 48%, #e4ebe6 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+.brand-title {
+  animation: rise 0.9s ease-out both;
+}
+
+.cycle-ring {
+  animation: rise 1s 0.1s ease-out both;
+}
+
+.track-btn {
+  animation: soft-pulse 4s ease-in-out infinite;
+}
+
+.modal-panel {
+  animation: sheet-up 0.28s ease-out both;
+}
+
+.btn-primary {
+  width: 100%;
+  border-radius: 9999px;
+  background: var(--accent);
+  color: white;
+  padding: 0.85rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-secondary {
+  width: 100%;
+  border-radius: 9999px;
+  background: var(--wash);
+  color: var(--ink);
+  padding: 0.85rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 550;
+  transition: background 0.15s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--wash-strong);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    box-shadow: 0 12px 40px rgba(196, 92, 114, 0.18);
+  }
+  50% {
+    box-shadow: 0 16px 48px rgba(196, 92, 114, 0.3);
+  }
+}
+
+@keyframes sheet-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-title,
+  .cycle-ring,
+  .track-btn,
+  .modal-panel {
+    animation: none;
+  }
 }
