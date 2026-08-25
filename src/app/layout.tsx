@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Outfit } from "next/font/google";
+import { AuthGate } from "@/components/AuthGate";
+import { AuthProvider } from "@/context/AuthContext";
 import { CycleProvider } from "@/context/CycleContext";
 import "./globals.css";
 
@@ -28,9 +30,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${display.variable} ${body.variable} h-full`}>
       <body className="min-h-full antialiased">
-        <CycleProvider>
-          <div className="flex min-h-full flex-col">{children}</div>
-        </CycleProvider>
+        <AuthProvider>
+          <CycleProvider>
+            <AuthGate>
+              <div className="flex min-h-full flex-col">{children}</div>
+            </AuthGate>
+          </CycleProvider>
+        </AuthProvider>
       </body>
     </html>
   );

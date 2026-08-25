@@ -1,9 +1,11 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { BottomNav } from "@/components/BottomNav";
 import { CycleRing } from "@/components/CycleRing";
 import { TrackModal } from "@/components/TrackModal";
+import { useAuth } from "@/context/AuthContext";
 import { useCycle } from "@/context/CycleContext";
 import { formatDisplayDate } from "@/lib/cycle";
 
@@ -17,6 +19,8 @@ export function HomeScreen() {
     state,
     updateSettings,
   } = useCycle();
+  const { user, logOut } = useAuth();
+  const router = useRouter();
   const [open, setOpen] = useState(false);
 
   if (!ready) {
@@ -31,6 +35,21 @@ export function HomeScreen() {
     <>
       <main className="mx-auto flex w-full max-w-lg flex-1 flex-col px-5 pb-28 pt-10">
         <header className="mb-8 text-center">
+          <div className="mb-3 flex items-center justify-between text-xs text-[var(--muted)]">
+            <span className="truncate">
+              {user ? `Hi, ${user.name.split(" ")[0]}` : ""}
+            </span>
+            <button
+              type="button"
+              className="shrink-0 rounded-full px-2 py-1 hover:bg-[var(--wash)] hover:text-[var(--ink)]"
+              onClick={() => {
+                logOut();
+                router.replace("/login");
+              }}
+            >
+              Log out
+            </button>
+          </div>
           <h1 className="brand-title font-[family-name:var(--font-display)] text-5xl tracking-tight text-[var(--ink)] sm:text-6xl">
             BeWell
           </h1>

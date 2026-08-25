@@ -19,6 +19,7 @@ import {
   toDateKey,
   uid,
 } from "@/lib/cycle";
+import { useAuth } from "@/context/AuthContext";
 import { emptyState, loadState, saveState } from "@/lib/storage";
 import type {
   AppState,
@@ -106,19 +107,28 @@ function rebuildCyclesFromDays(days: Record<string, DayLog>): Cycle[] {
 }
 
 export function CycleProvider({ children }: { children: ReactNode }) {
+  const { user, ready: authReady } = useAuth();
+  const userId = user?.id ?? null;
   const [ready, setReady] = useState(false);
   const [state, setState] = useState<AppState>(emptyState);
   const todayKey = toDateKey(new Date());
 
   useEffect(() => {
-    setState(loadState());
+    if (!authReady) return;
+    if (!userId) {
+      setState(emptyState());
+      setReady(true);
+      return;
+    }
+    setReady(false);
+    setState(loadState(userId));
     setReady(true);
-  }, []);
+  }, [authReady, userId]);
 
   useEffect(() => {
-    if (!ready) return;
-    saveState(state);
-  }, [state, ready]);
+    if (!ready || !userId) return;
+    saveState(userId, state);
+  }, [state, ready, userId]);
 
   const latestCycle = useMemo(
     () => getLatestCycle(state.cycles),

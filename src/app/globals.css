@@ -77,6 +77,35 @@ body {
   background: var(--wash-strong);
 }
 
+.btn-primary:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.auth-card {
+  animation: rise 0.75s ease-out both;
+}
+
+.auth-input {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.7);
+  padding: 0.85rem 1rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.auth-input::placeholder {
+  color: color-mix(in srgb, var(--muted) 80%, transparent);
+}
+
+.auth-input:focus {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+  box-shadow: 0 0 0 3px rgba(196, 92, 114, 0.15);
+}
+
 @keyframes rise {
   from {
     opacity: 0;
