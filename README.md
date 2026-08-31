@@ -8,7 +8,13 @@ A calm period tracking web app: see your cycle phase, log days on a calendar, an
 - **Calendar** — month view to mark period days and flow
 - **History** — past cycles in collapsible year sections
 
-Data is stored locally in your browser (`localStorage`).
+Data is stored on the server per account (login session + cycle logs). Local cache is kept for faster loads and offline fallback.
+
+## Account storage
+
+- Sign up / log in creates a secure session tied to your account
+- Cycle data saves to your account on the server
+- On Vercel production, set `AUTH_SECRET` and connect a Redis store (Upstash) — see `.env.example`
 
 ## Develop
 

@@ -10,13 +10,13 @@ import {
   type ReactNode,
 } from "react";
 import {
-  getSessionUserId,
-  getUserById,
-  logIn as authLogIn,
-  logOut as authLogOut,
-  signUp as authSignUp,
+  fetchSession,
+  logIn as apiLogIn,
+  logOut as apiLogOut,
+  signUp as apiSignUp,
   type PublicUser,
-} from "@/lib/auth";
+} from "@/lib/auth-client";
+import { syncLocalStateToAccount } from "@/lib/storage";
 
 type AuthContextValue = {
   ready: boolean;
@@ -30,7 +30,7 @@ type AuthContextValue = {
     email: string;
     password: string;
   }) => Promise<{ ok: true } | { ok: false; error: string }>;
-  logOut: () => void;
+  logOut: () => Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -40,16 +40,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<PublicUser | null>(null);
 
   useEffect(() => {
-    const id = getSessionUserId();
-    setUser(id ? getUserById(id) : null);
-    setReady(true);
+    fetchSession()
+      .then(setUser)
+      .finally(() => setReady(true));
   }, []);
 
   const signUp = useCallback(
     async (input: { name: string; email: string; password: string }) => {
-      const result = await authSignUp(input);
+      const result = await apiSignUp(input);
       if (!result.ok) return result;
       setUser(result.user);
+      await syncLocalStateToAccount(result.user.id);
       return { ok: true as const };
     },
     [],
@@ -57,16 +58,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logIn = useCallback(
     async (input: { email: string; password: string }) => {
-      const result = await authLogIn(input);
+      const result = await apiLogIn(input);
       if (!result.ok) return result;
       setUser(result.user);
+      await syncLocalStateToAccount(result.user.id);
       return { ok: true as const };
     },
     [],
   );
 
-  const logOut = useCallback(() => {
-    authLogOut();
+  const logOut = useCallback(async () => {
+    await apiLogOut();
     setUser(null);
   }, []);
 

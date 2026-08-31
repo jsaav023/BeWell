@@ -120,9 +120,18 @@ export function CycleProvider({ children }: { children: ReactNode }) {
       setReady(true);
       return;
     }
+
+    let cancelled = false;
     setReady(false);
-    setState(loadState(userId));
-    setReady(true);
+    loadState(userId).then((data) => {
+      if (cancelled) return;
+      setState(data);
+      setReady(true);
+    });
+
+    return () => {
+      cancelled = true;
+    };
   }, [authReady, userId]);
 
   useEffect(() => {

@@ -44,8 +44,7 @@ export function HomeScreen() {
               type="button"
               className="shrink-0 rounded-full px-2 py-1 hover:bg-[var(--wash)] hover:text-[var(--ink)]"
               onClick={() => {
-                logOut();
-                router.replace("/login");
+                void logOut().then(() => router.replace("/login"));
               }}
             >
               Log out
