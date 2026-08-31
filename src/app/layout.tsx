@@ -17,9 +17,9 @@ const body = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "BeWell — Period Tracker",
+  title: "BeWell — Bee & Pink Period Tracker",
   description:
-    "Track your cycle, see your phase, and revisit period history with BeWell.",
+    "Track your cycle with a sweet bee-and-pink themed app. See your phase, calendar, and history.",
 };
 
 export default function RootLayout({

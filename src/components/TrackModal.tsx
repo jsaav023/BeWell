@@ -46,7 +46,7 @@ export function TrackModal({ open, onClose, dateKey }: Props) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end justify-center bg-[rgba(44,36,40,0.35)] p-4 sm:items-center"
+      className="fixed inset-0 z-50 flex items-end justify-center bg-[rgba(255,184,212,0.35)] p-4 sm:items-center"
       onClick={onClose}
       role="presentation"
     >
@@ -55,7 +55,7 @@ export function TrackModal({ open, onClose, dateKey }: Props) {
         role="dialog"
         aria-modal
         aria-labelledby="track-title"
-        className="modal-panel w-full max-w-md rounded-3xl bg-[var(--surface)] p-6 shadow-2xl"
+        className="modal-panel bee-card w-full max-w-md rounded-3xl bg-[var(--surface)] p-6 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <p className="text-xs font-medium uppercase tracking-[0.16em] text-[var(--muted)]">

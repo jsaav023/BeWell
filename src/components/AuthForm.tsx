@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
+import { BeeBrand } from "@/components/BeeBrand";
 import { useAuth } from "@/context/AuthContext";
 
 type Mode = "login" | "signup";
@@ -43,9 +44,7 @@ export function AuthForm({ mode }: Props) {
   return (
     <div className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center px-5 py-12">
       <header className="mb-10 text-center">
-        <p className="brand-title font-[family-name:var(--font-display)] text-5xl tracking-tight text-[var(--ink)]">
-          BeWell
-        </p>
+        <BeeBrand className="justify-center" />
         <h1 className="mt-4 font-[family-name:var(--font-display)] text-2xl text-[var(--ink)]">
           {isSignup ? "Create your account" : "Welcome back"}
         </h1>
@@ -58,7 +57,7 @@ export function AuthForm({ mode }: Props) {
 
       <form
         onSubmit={onSubmit}
-        className="auth-card space-y-4 rounded-[1.75rem] bg-[var(--surface)]/85 p-6 shadow-[0_20px_50px_rgba(44,36,40,0.08)]"
+        className="auth-card bee-card space-y-4 rounded-[1.75rem] bg-[var(--surface)]/90 p-6"
       >
         {isSignup && (
           <label className="block">
@@ -109,7 +108,7 @@ export function AuthForm({ mode }: Props) {
         </label>
 
         {error && (
-          <p className="rounded-2xl bg-[rgba(196,92,114,0.12)] px-3 py-2 text-sm text-[var(--accent)]" role="alert">
+          <p className="rounded-2xl bg-[var(--pink-soft)] px-3 py-2 text-sm text-[var(--accent-deep)]" role="alert">
             {error}
           </p>
         )}

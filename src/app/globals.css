@@ -1,15 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #2c2428;
-  --muted: #7a6a70;
-  --accent: #c45c72;
-  --surface: #fff8f6;
-  --wash: rgba(44, 36, 40, 0.05);
-  --wash-strong: rgba(44, 36, 40, 0.09);
-  --line: rgba(44, 36, 40, 0.08);
-  --background: #f3ebe6;
-  --foreground: #2c2428;
+  --ink: #3d2f00;
+  --muted: #9a7080;
+  --accent: #ff5da2;
+  --accent-deep: #e8458f;
+  --honey: #f5b731;
+  --honey-soft: rgba(245, 183, 49, 0.22);
+  --pink-soft: rgba(255, 93, 162, 0.14);
+  --surface: #fff5f8;
+  --wash: rgba(255, 93, 162, 0.07);
+  --wash-strong: rgba(255, 93, 162, 0.12);
+  --line: rgba(255, 93, 162, 0.14);
+  --background: #fff0f5;
+  --foreground: #3d2f00;
 }
 
 @theme inline {
@@ -22,11 +26,13 @@
 body {
   color: var(--foreground);
   font-family: var(--font-body), system-ui, sans-serif;
-  background:
-    radial-gradient(ellipse 120% 80% at 10% -10%, #f7d5d0 0%, transparent 55%),
-    radial-gradient(ellipse 90% 70% at 100% 0%, #d7e8dc 0%, transparent 50%),
-    radial-gradient(ellipse 70% 50% at 50% 100%, #f0ddd4 0%, transparent 45%),
-    linear-gradient(165deg, #f7efe9 0%, #ebe4df 48%, #e4ebe6 100%);
+  background-color: var(--background);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cg fill='none' stroke='%23f5b731' stroke-width='1' opacity='0.14'%3E%3Cpath d='M28 66L0 50V16L28 0l28 16v34L28 66z'/%3E%3Cpath d='M0 50l28 16 28-16M28 66v34'/%3E%3C/g%3E%3C/svg%3E"),
+    radial-gradient(ellipse 120% 80% at 10% -10%, #ffd6e8 0%, transparent 55%),
+    radial-gradient(ellipse 90% 70% at 100% 0%, #ffe8a8 0%, transparent 50%),
+    radial-gradient(ellipse 70% 50% at 50% 100%, #ffc8dd 0%, transparent 45%),
+    linear-gradient(165deg, #fff5f8 0%, #ffe8f0 48%, #fff8e8 100%);
   background-attachment: fixed;
   min-height: 100vh;
 }
@@ -50,11 +56,12 @@ body {
 .btn-primary {
   width: 100%;
   border-radius: 9999px;
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
   color: white;
   padding: 0.85rem 1.25rem;
   font-size: 0.95rem;
   font-weight: 600;
+  box-shadow: 0 8px 24px rgba(255, 93, 162, 0.28);
   transition: transform 0.15s ease, opacity 0.15s ease;
 }
 
@@ -84,13 +91,14 @@ body {
 
 .auth-card {
   animation: rise 0.75s ease-out both;
+  border: 1px solid var(--line);
 }
 
 .auth-input {
   width: 100%;
   border-radius: 1rem;
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.75);
   padding: 0.85rem 1rem;
   color: var(--ink);
   outline: none;
@@ -103,7 +111,12 @@ body {
 
 .auth-input:focus {
   border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
-  box-shadow: 0 0 0 3px rgba(196, 92, 114, 0.15);
+  box-shadow: 0 0 0 3px var(--pink-soft);
+}
+
+.bee-card {
+  border: 1px solid var(--line);
+  box-shadow: 0 12px 40px rgba(255, 93, 162, 0.08);
 }
 
 @keyframes rise {
@@ -120,10 +133,10 @@ body {
 @keyframes soft-pulse {
   0%,
   100% {
-    box-shadow: 0 12px 40px rgba(196, 92, 114, 0.18);
+    box-shadow: 0 12px 40px rgba(255, 93, 162, 0.2);
   }
   50% {
-    box-shadow: 0 16px 48px rgba(196, 92, 114, 0.3);
+    box-shadow: 0 16px 48px rgba(245, 183, 49, 0.28);
   }
 }
 

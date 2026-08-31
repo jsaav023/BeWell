@@ -102,7 +102,7 @@ export function CalendarMonth() {
                 background: isPeriod
                   ? "var(--accent)"
                   : isPredicted
-                    ? "rgba(196, 92, 114, 0.12)"
+                    ? "var(--pink-soft)"
                     : phase
                       ? phase.soft
                       : "var(--wash)",
@@ -126,7 +126,7 @@ export function CalendarMonth() {
           <span className="h-3 w-3 rounded-full bg-[var(--accent)]" /> Period
         </span>
         <span className="flex items-center gap-2">
-          <span className="h-3 w-3 rounded-full bg-[rgba(196,92,114,0.25)]" />{" "}
+          <span className="h-3 w-3 rounded-full bg-[var(--pink-soft)]" />{" "}
           Predicted
         </span>
         <span className="flex items-center gap-2">

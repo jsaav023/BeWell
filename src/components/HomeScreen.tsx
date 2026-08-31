@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { BottomNav } from "@/components/BottomNav";
+import { BeeBrand } from "@/components/BeeBrand";
 import { CycleRing } from "@/components/CycleRing";
 import { TrackModal } from "@/components/TrackModal";
 import { useAuth } from "@/context/AuthContext";
@@ -50,9 +51,7 @@ export function HomeScreen() {
               Log out
             </button>
           </div>
-          <h1 className="brand-title font-[family-name:var(--font-display)] text-5xl tracking-tight text-[var(--ink)] sm:text-6xl">
-            BeWell
-          </h1>
+          <BeeBrand className="justify-center" />
           <p className="mt-2 text-sm text-[var(--muted)]">
             {phase
               ? phase.description
@@ -81,7 +80,7 @@ export function HomeScreen() {
             </p>
           )}
 
-          <div className="mx-auto flex max-w-xs items-center justify-center gap-3 rounded-full bg-[var(--surface)]/70 px-4 py-2 text-xs text-[var(--muted)]">
+          <div className="mx-auto flex max-w-xs items-center justify-center gap-3 rounded-full border border-[var(--line)] bg-[var(--surface)]/80 px-4 py-2 text-xs text-[var(--muted)]">
             <label className="flex items-center gap-2">
               Cycle
               <input

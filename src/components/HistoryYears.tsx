@@ -34,7 +34,7 @@ export function HistoryYears() {
 
   if (years.length === 0) {
     return (
-      <div className="rounded-3xl bg-[var(--surface)]/70 px-6 py-12 text-center">
+      <div className="rounded-3xl border border-[var(--line)] bg-[var(--surface)]/80 px-6 py-12 text-center bee-card">
         <p className="font-[family-name:var(--font-display)] text-xl text-[var(--ink)]">
           No cycles yet
         </p>
@@ -54,7 +54,7 @@ export function HistoryYears() {
         return (
           <div
             key={year}
-            className="overflow-hidden rounded-3xl bg-[var(--surface)]/80"
+            className="overflow-hidden rounded-3xl border border-[var(--line)] bg-[var(--surface)]/85 bee-card"
           >
             <button
               type="button"

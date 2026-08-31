@@ -52,7 +52,7 @@ export function CycleRing({ cycleDay, cycleLength, phase, onTrack }: Props) {
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="rgba(44, 36, 40, 0.08)"
+          stroke="var(--pink-soft)"
           strokeWidth={stroke}
         />
         <circle
@@ -105,7 +105,7 @@ export function CycleRing({ cycleDay, cycleLength, phase, onTrack }: Props) {
       <button
         type="button"
         onClick={onTrack}
-        className="track-btn relative z-10 flex h-40 w-40 flex-col items-center justify-center rounded-full text-center shadow-[0_12px_40px_rgba(196,92,114,0.22)] transition-transform active:scale-[0.97]"
+        className="track-btn relative z-10 flex h-40 w-40 flex-col items-center justify-center rounded-full text-center shadow-[0_12px_40px_rgba(255,93,162,0.22)] transition-transform active:scale-[0.97]"
         style={{
           background: `radial-gradient(circle at 30% 25%, #fff 0%, ${activePhase.soft} 45%, ${activePhase.color}22 100%)`,
           border: `1.5px solid ${activePhase.color}55`,
