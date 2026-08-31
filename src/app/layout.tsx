@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fraunces, Outfit } from "next/font/google";
 import { AuthGate } from "@/components/AuthGate";
 import { AuthProvider } from "@/context/AuthContext";
@@ -20,6 +20,20 @@ export const metadata: Metadata = {
   title: "BeWell — Bee & Pink Period Tracker",
   description:
     "Track your cycle with a sweet bee-and-pink themed app. See your phase, calendar, and history.",
+  applicationName: "BeWell",
+  appleWebApp: {
+    capable: true,
+    title: "BeWell",
+    statusBarStyle: "default",
+  },
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#FF5DA2",
 };
 
 export default function RootLayout({
