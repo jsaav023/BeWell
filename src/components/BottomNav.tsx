@@ -7,6 +7,7 @@ import { BeeMark } from "@/components/BeeMark";
 const links = [
   { href: "/", label: "Home" },
   { href: "/calendar", label: "Calendar" },
+  { href: "/analysis", label: "Analysis" },
   { href: "/history", label: "History" },
 ];
 
